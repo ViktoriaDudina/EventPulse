@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events Details{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    color: #333;
+    }
+
+
+    .container img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    }
+
+
+    .container h1,
+    .container h3,
+    .container h4,
+    .container h5,
+    .container p {
+    margin-bottom: 10px;
+    color: #555;
+    }
+
+    .container h4 {
+    font-size: 18px;
+    }
+
+    .container p {
+    font-size: 16px;
+    }
+
+
+    .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+
+    .btn-info {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    }
+
+    .btn-info:hover {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
+    }
+
+    .btn-warning {
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+    }
+
+    .btn-warning:hover {
+    background-color: #d39e00;
+    border: 1px solid #d39e00;
+    }
+    .event-details {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+
+    .event-details h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+
+    .event-details .details {
+        color: #555;
+    }
+
+    .event-details .details p {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .event-details .details a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .event-details .details a:hover {
+        color: #0056b3;
+    }
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .button-wrapper .btn {
+        flex: 1;
+        margin: 3px;
+        width: auto;
+        max-width: 200px;
+    }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+<div class="container ">
+    <h1 class="m-3">Events Details</h1>
+    <img src="{{ event.image }}" alt="image" style="width: 80%" >
+    <h1>{{ event.name }}</h1>
+    <h4>Event type: {{ event.type }}</h4>
+    <h4>Event date: {{ event.date ? event.date|date('Y-m-d H:i') : '' }}</h4>
+    <p>{{ event.description }}</p>
+    <div class="event-details">
+        <h2>Contact Information</h2>
+        <div class="details">
+            <p>Capacity: {{ event.capacity }} people</p>
+            <p>E-Mail: <a href="mailto:{{ event.email }}">{{ event.email }}</a></p>
+            <p>Phone number: {{ event.phonenumber }}</p>
+            <p>URL:<a href="{{ event.URL }}" target="_blank"> {{ event.URL }}</a></p>
+            <p>Address: {{ event.address }}</p>
+        </div>
+    </div>
+
+
+    <div class="button-wrapper">
+    <a class="btn btn-info m-3" href="{{ path('app_events_index') }}">back to list</a>
+
+    <a class="btn btn-warning m-3" href="{{ path('app_events_edit', {'id': event.id}) }}">edit</a>
+
+    {{ include('events/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

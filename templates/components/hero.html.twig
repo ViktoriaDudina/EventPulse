@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hero</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            position: relative;
+            height: 100%;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3em;
+            text-align: center;
+            z-index: 1;
+        }
+        .button {
+            display: inline-block;
+            position: relative;
+            color: #fff;
+            font-size: 1.5rem;
+            background: linear-gradient(to right, #6e1c97, #5e2cb9);
+            padding: 1rem 1.75rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .button:before {
+            content: '';
+            width: 100%;
+            height: 200%;
+            position: absolute;
+            top: 0; left: 0;
+            opacity: 0.5;
+            filter: blur;
+            background: linear-gradient(to left, transparent 0%, #fff 40%, #fff 60%, transparent 100%);
+            transform: translate(-100%, -25%) rotate(10deg);
+            animation: blick 5s infinite;
+        }
+        @keyframes blick {
+            0% {
+                transform: translate(-100%, -25%) rotate(10deg);
+            }
+            20% {
+                transform: translate(100%, -25%) rotate(10deg);
+            }
+            100% {
+                transform: translate(100%, -25%) rotate(10deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="hero-container">
+        <img src="https://img.freepik.com/free-vector/realistic-dynamic-fog-background_23-2149111508.jpg?w=900&t=st=1702221644~exp=1702222244~hmac=1206976287f95b103e52198f7e6da5913a474cad7e342285d77d7824d9457405"
+             alt="hero" class="hero-image">
+       <div class="hero-text">
+           <h1>Discover the Magical World of Events</h1>
+           <a href="{{ path('app_events_index') }}"><button class="button"><img src="https://img.freepik.com/free-vector/magic-show-background_1284-13012.jpg?w=740&t=st=1702222894~exp=1702223494~hmac=0b1c948e996cf5004a4a4e589bc3db220811b190d4d24dbc656d2db4e45693b7" alt="" style="width: 200px"></button></a>
+       </div>
+    </div>
+</header>
+</body>
+</html>
+

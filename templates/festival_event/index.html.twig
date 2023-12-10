@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FestivalEventController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-light text-center fw-bold my-4">Event index</h1>
+        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+            {% for event in events %}
+
+                <div class="card m-3 shadow_1" style="width: 20rem;">
+                    <img src="{{ event.image }}" class="card-img-top hover-zoom shadow" alt="..." style="height: 270px;" width="250px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.name }}</h5>
+                        <hr>
+                        {# <p class="card-text"><span>Description:</span><br> {{ event.description }}</p> #}
+                        <p class="card-text"><span>Date:</span> {{ event.dateTime ? event.dateTime|date('Y-m-d ⏳: H:i:s') : '' }}</p>
+                        <p class="card-text"><span>Type:</span> {{ event.type }}</p>
+                        <hr>
+                        <a href="{{ path('app_event_show', {'id': event.id}) }}" class="btn btn-success">Details</a>
+                        <a href="{{ path('app_event_edit', {'id': event.id}) }}" class="btn btn-warning">Edit</a>
+                        <a class="btn btn-secondary" href="{{ path('app_event_index') }}">Back to list</a>
+                    </div>
+                </div>
+
+
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </div>
+        <a class="btn btn-primary mt-3 mx-1" href="{{ path('app_event_new') }}">Create new</a>
+    </div>
+{% endblock %}
